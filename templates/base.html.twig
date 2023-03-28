@@ -1,19 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr-FR">
     <head>
+        {% block meta %}
+        <!-- Required meta tags --> 
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+        <title>
+            {% block title %}
+                JStream - Site de Streaming !
+            {% endblock %}
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+           {% block stylesheets %}
+        </title>
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="{{ asset('images/favicon.ico')}}" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+        <!-- Typography CSS -->
+        <link rel="stylesheet" href="{{ asset('css/typography.css') }}">
+        <!-- owl carousel CSS -->
+        <link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}">
+        <!-- Style -->
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/css/style-bc.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/css/style-ds.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/css/style-mha.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/css/style-hxh.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+        <!-- Responsive -->
+        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
+        <!-- Icones -->
+        <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css') }}">
         {% endblock %}
     </head>
+    
     <body>
-        {% block body %}{% endblock %}
+        <div id="loading">
+            <div id="loading-center">
+            </div>
+         </div>
+        {% include 'header.html.twig' %}
+        {##} 
+        
+       
+        {% block body %}
+        {% endblock %}
+
+        {% include 'footer.html.twig' %}
+        <div id="back-to-top">
+           <a class="top" href="#top" id="top"> <i class="ri-arrow-up-s-line"></i></i> </a>
+        </div>
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+                        {#{{ encore_entry_script_tags('app') }}#}
+           <!-- jQuery, Popper JS -->
+            <script src="{{ asset('js/jquery-3.4.1.min.js')}}"></script>
+            <script src="{{ asset('js/popper.min.js')}}"></script>
+           <!-- Bootstrap JS -->
+            <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+            <!-- Slick JS -->
+            <script src="{{ asset('js/slick.min.js')}}"></script>
+            <!-- owl carousel Js -->
+            <script src="{{ asset('/js/owl.carousel.min.js') }}"></script>
+            <!-- select2 Js -->
+            <script src="{{ asset('js/select2.min.js')}}"></script>
+            <!-- Magnific Popup-->
+            <script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
+            <!-- Slick Animation-->
+            <script src="{{ asset('js/slick-animation.min.js')}}"></script>
+            <!-- Custom JS-->
+            <script src="{{ asset('js/custom.js')}}"></script>                        
+        {% endblock %}      
     </body>
 </html>
+
