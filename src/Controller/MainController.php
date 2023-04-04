@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\AnimeSaisonRepository;
+use App\Repository\AnimesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,10 +11,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/main', name: 'main_page')]
-    public function index(): Response
-    {
+    public function index(AnimesRepository $animesRepository, AnimeSaisonRepository $animeSaisonRepository): Response
+    {   
         return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
+            'Animes' => $animesRepository->findBy([], ['titre' => 'asc']),
+            'AnimeSaisons' => $animeSaisonRepository->findBy([], ['anime_id' => 'asc']),
         ]);
     }
     

@@ -5,10 +5,15 @@ namespace App\Entity;
 use App\Repository\AnimesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: AnimesRepository::class)]
+/**
+ * @Vich\Uploadable
+ */
 class Animes
 {
     #[ORM\Id]
@@ -21,6 +26,11 @@ class Animes
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $created_at;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_sortie = null;
@@ -39,6 +49,12 @@ class Animes
 
     #[ORM\OneToMany(mappedBy: 'anime_id', targetEntity: Saison::class)]
     private Collection $saisons;
+
+    /**
+     * @Vich\UploadableField(mapping="featured_images", fileNameProperty="featured_image")
+     * @var File
+     */
+    private $imageFile;
 
     public function __construct()
     {
@@ -59,6 +75,18 @@ class Animes
     public function setTitre(string $titre): self
     {
         $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }
@@ -181,6 +209,21 @@ class Animes
         }
 
         return $this;
+    }
+
+    public function getImageFile(File $image = null)
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(File $image = null)
+    {        
+        $this->imageFile = $image;
+
+         if($image) {
+             $this->created_at = new \DateTime('now');
+         }
+
     }
 
 }

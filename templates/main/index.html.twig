@@ -1,20 +1,89 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<!-- Slider Start --><!-- Début Bannière déroulante -->
+<section class="iq-main-slider p-0">
+   <div id="tvshows-slider">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Dev_Perso/streaming-site/symfony/jstream-v4/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Dev_Perso/streaming-site/symfony/jstream-v4/templates/main/index.html.twig'|file_link(0) }}">templates/main/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+    {% for animeSaison in AnimeSaisons %}
+      {% for anime in Animes %}
+    {#  {% set url = path('show_anime',{'slug': anime.slug, 'id': anime.id}) %} #}
+      <div>
+         <a href="#"> {#{{url}}#}
+            <div class="shows-img">
+               <img src="{{ vich_uploader_asset(anime, 'imageFile') }}" class="w-100" alt="">
+               <div class="shows-content">
+                  <h4 class="text-white mb-1">{{anime.titre}}</h4>
+                  <div class="movie-time d-flex align-items-center">
+                     <div class="badge badge-secondary p-1 mr-2">{{anime.ageMax}} ans</div>
+                        {% if animeSaison.nombredesaisons > 1 %}
+                        <span class="text-white"> {{animeSaison.nombredesaisons}} Saisons</span> {##}
+                        {% else %}
+                        <span class="text-white"> {{animeSaison.nombredesaisons}} Saison</span> {##}
+                        {% endif %} 
+                  </div>
+               </div>
+            </div>
+         </a>
+      </div>
+      {% endfor %}
+      {% endfor %}
+</section>
+<!-- Slider End -->
+<!-- MainContent -->
+<div class="main-content">
+   <section id="iq-favorites">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-sm-12 overflow-hidden">
+               <div class="iq-main-header d-flex align-items-center justify-content-between">
+                  <h4 class="main-title">Catalogue d'aminé</h4>
+               </div>
+               <div class="favorites-contens">
+                  <ul class="favorites-slider list-inline  row p-0 mb-0">
+                    {% for animeSaison in AnimeSaisons %}
+                     {% for anime in Animes %}
+                     {# {% set url = path('show_anime',{'slug': anime.slug, 'id': anime.id}) %}  #}
+                     <li class="slide-item">
+                        <a href="#"> {#{{ url }}#}
+                           <div class="block-images position-relative">
+                              <div class="img-box">
+                                 <img src="{{ vich_uploader_asset(anime, 'imageFile') }}" class="img-fluid" alt="">
+                              </div>
+                              <div class="block-description">
+                                 <h6>{{anime.titre}}</h6>
+                                 <div class="movie-time d-flex align-items-center my-2">
+                                    <div class="badge badge-secondary p-1 mr-2">{{anime.ageMax}} ans</div>
+                                       {% if animeSaison.nombredesaisons > 1 %}
+                                       <span class="text-white">{{animeSaison.nombredesaisons}} Saisons</span> {##}
+                                       {% else %}
+                                       <span class="text-white">{{animeSaison.nombredesaisons}} Saison</span> {##}
+                                       {% endif %} 
+                                 </div>
+                                 <div class="hover-buttons">
+                                    <span class="btn btn-hover"><i class="ri-play-line" aria-hidden="true"></i>
+                                       Play</span>
+                                 </div>
+                              </div>
+                              <div class="block-social-info">
+                                 <ul class="list-inline p-0 m-0 music-play-lists">
+                                    <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                    <li><span><i class="ri-heart-fill"></i></span></li>
+                                    <li><span><i class="ri-add-line"></i></span></li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </a>
+                     </li>
+                     {% endfor %}
+                     {% endfor %}
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+</div> 
+{% endblock %} 
