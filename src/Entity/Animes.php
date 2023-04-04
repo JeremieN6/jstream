@@ -226,4 +226,9 @@ class Animes
 
     }
 
+    public function __toString(){
+
+        return $this->titre;
+    }
+
 }
