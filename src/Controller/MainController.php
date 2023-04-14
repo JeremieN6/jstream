@@ -47,10 +47,13 @@ class MainController extends AbstractController
             $episodesList = array_merge($episodesList, $episodesSaison);
         }
 
+        $saisonList = $saisonRepository->findBy(['anime_id' => $id]);
+
         return $this->render('main/show-anime.html.twig', [
             'Anime' => $animesRepository->find($id),
             'listEpisodes' => $episodesList,
             'saisons' => $saisonRepository,
+            'saisonList' => $saisonList,
         ]);
     }
 
