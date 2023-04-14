@@ -2,8 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Animes;
+use App\Entity\Saison;
+use App\Entity\SaisonEpisodes;
 use App\Repository\AnimeSaisonRepository;
 use App\Repository\AnimesRepository;
+use App\Repository\EpisodeRepository;
+use App\Repository\SaisonEpisodesRepository;
+use App\Repository\SaisonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,6 +24,36 @@ class MainController extends AbstractController
             'AnimeSaisons' => $animeSaisonRepository->findBy([], ['anime_id' => 'asc']),
         ]);
     }
+
+    /**
+     * @Route ("/{id}/{slug}", name="show_anime")
+     * @param $slug
+     */
+    public function show_anime(
+        AnimesRepository $animesRepository, 
+        EpisodeRepository $episodeRepository,
+        SaisonRepository $saisonRepository,
+        SaisonEpisodesRepository $saisonEpisodesRepository,
+        Saison $saisonAnimeid,
+        SaisonEpisodes $saison_id,
+        $id): Response
+    {
+    
+        $anime = $animesRepository->find($id);
+        $saisons = $saisonRepository->findBy(['anime_id' => $saisonAnimeid]);
+        $episodesList = [];
+        foreach ($saisons as $saison_id) {
+            $episodesSaison = $episodeRepository->findBy(['saison_id' => $saison_id]);
+            $episodesList = array_merge($episodesList, $episodesSaison);
+        }
+
+        return $this->render('main/show-anime.html.twig', [
+            'Anime' => $animesRepository->find($id),
+            'listEpisodes' => $episodesList,
+            'saisons' => $saisonRepository,
+        ]);
+    }
+
     
     /**
      * @Route("/manage-profil", name="modif_profil")

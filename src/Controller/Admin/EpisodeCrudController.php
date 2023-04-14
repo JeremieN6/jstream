@@ -24,9 +24,9 @@ class EpisodeCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('saison_id', 'Nom la saison')->hideOnIndex(),
+            AssociationField::new('saison_id', 'Nom la saison'),
             // AssociationField::new('titre_saison','Nom de la Saison'),
-            IntegerField::new('numero_d_episode', 'N° d\'épisode')->hideOnIndex(),
+            IntegerField::new('numero_d_episode', 'N° d\'épisode'),
             TextField::new('titre_episode','Titre de l\'episode'),
             TextEditorField::new('description_episode', 'Description'),
             IntegerField::new('duree_episode', 'Durée de l\'Episode'),

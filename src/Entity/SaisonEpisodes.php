@@ -78,4 +78,5 @@ class SaisonEpisodes
 
         return $this;
     }
+    
 }

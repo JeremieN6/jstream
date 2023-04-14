@@ -56,6 +56,9 @@ class Animes
      */
     private $imageFile;
 
+    #[ORM\Column]
+    private ?int $nbrDeSaisonsDansAnime = null;
+
     public function __construct()
     {
         $this->animeSaisons = new ArrayCollection();
@@ -229,6 +232,18 @@ class Animes
     public function __toString(){
 
         return $this->titre;
+    }
+
+    public function getNbrDeSaisonsDansAnime(): ?int
+    {
+        return $this->nbrDeSaisonsDansAnime;
+    }
+
+    public function setNbrDeSaisonsDansAnime(int $nbrDeSaisonsDansAnime): self
+    {
+        $this->nbrDeSaisonsDansAnime = $nbrDeSaisonsDansAnime;
+
+        return $this;
     }
 
 }

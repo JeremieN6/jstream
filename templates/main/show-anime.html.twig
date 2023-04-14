@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+ <section class="banner-wrapper overlay-wrapper iq-main-slider"
+   style="background-image: url({{vich_uploader_asset(Anime, 'imageFile') }})">
+    <div class="banner-caption">
+       <div class="position-relative mb-4">
+          <a href="mha-s01e01.html" class="d-flex align-items-center">
+             <div class="play-button">
+                <i class="ri-play-line"></i>
+             </div>
+             <h4 class="w-name text-white font-weight-700">Regarder les épisodes</h4>
+          </a>
+       </div>
+       <ul class="list-inline p-0 m-0 share-icons music-play-lists">
+          <li><span><i class="ri-add-line"></i></span></li>
+          <li><span><i class="ri-heart-fill"></i></span></li>
+          <li class="share">
+             <span><i class="ri-share-fill"></i></span>
+             <div class="share-box">
+                <div class="d-flex align-items-center">
+                   <a href="#" class="share-ico"><i class="ri-facebook-fill"></i></a>
+                   <a href="#" class="share-ico"><i class="ri-twitter-fill"></i></a>
+                   <a href="#" class="share-ico"><i class="ri-links-fill"></i></a>
+                </div>
+             </div>
+          </li>
+       </ul>
+    </div>
+ </section>
+
+ <div class="main-content">
+    <section class="movie-detail container-fluid">
+       <div class="row">
+          <div class="col-lg-12">
+             <div class="trending-info g-border">
+                <h1 class="trending-text big-title text-uppercase mt-0">{{Anime.titre}}</h1>
+                <ul class="p-0 list-inline d-flex align-items-center movie-content">
+                   {#{% for tag in tags %}
+                   <li class="" style="color: brown; font-weight:bold;">{{tag.nom}}</li>
+                   {% endfor %} (A FAIRE) ! Trouver la requete qui affiche l'id de l'anime avec les bon tags #}
+                   <li class="text-white">Action</li>
+                   <li class="text-white">Aventure</li>
+                </ul>
+                <div class="d-flex align-items-center text-white text-detail">
+                   <span class="badge badge-secondary p-3">{{Anime.ageMax}} ans</span>
+                            {% if Anime.nbrDeSaisonsDansAnime > 1 %}
+                                <span class="ml-3">{{Anime.nbrDeSaisonsDansAnime}} saisons</span>
+                                {% else %}
+                                <span class="ml-3">{{Anime.nbrDeSaisonsDansAnime}} saison</span>
+                            {% endif %}
+                   <span class="trending-year">{{Anime.datesortie.format('d/m/Y')}}</span>
+                </div>
+                <p class="trending-dec w-100 mb-0">{{Anime.description|raw}}</p>
+             </div>
+          </div>
+       </div>
+    </section>
+    <section class="container-fluid seasons">
+        <div class="iq-custom-select d-inline-block sea-epi s-margin">
+            <select name="cars" class="form-control season-select">
+               {% for saisonAnime in saisons %}
+                {# {% for animeSaison in AnimeSaisons %} #}             
+               {#season{{saison.saison_number}}#}<option value="season 1">{{ saisonAnime.titresaison }}</option> {#{{ saison.saison_number }}#}
+               {% endfor %}
+            </select>
+         </div>
+         <ul class="trending-pills d-flex nav nav-pills align-items-center text-center s-margin" role="tablist">
+            <li class="nav-item">
+               <a class="nav-link active show" data-toggle="pill" href="#episodes" role="tab"
+                  aria-selected="true">Episodes</a>
+            </li>
+            <!-- <li class="nav-item">
+               <a class="nav-link" data-toggle="pill" href="#popularclips" role="tab" aria-selected="false">Popular
+                  Clips</a>
+            </li> -->
+         </ul>
+       <div class="tab-content">
+          <div id="episodes" class="tab-pane fade active show" role="tabpanel">
+             <div class="block-space">
+               {# {% set url = path('show_episode',{'slug': targetAnime.nom,'id': targetAnime.id,'saison_number': saisons.saison_number, 'episode_number': episode.episode_number}) %}  #}
+                <div class="row">  
+                    {% for episode in listEpisodes %}
+                   <div class="col-1-5 col-md-6 iq-mb-30">
+                      <div class="epi-box">
+                         <div class="epi-img position-relative">
+                             <img src="{{ vich_uploader_asset(episode, 'imageFile') }}" class="img-fluid img-zoom" alt="{{episode.titreepisode}}">
+                             <div class="episode-number">{{episode.numerodepisode}}</div>
+                            <div class="episode-play-info">
+                               <div class="episode-play">
+                                  <a href="#"> {#{{url}}#}
+                                     <i class="ri-play-fill"></i>
+                                  </a>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="epi-desc p-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                               <span class="text-white">{{Anime.titre}}</span>
+                               <span class="text-primary">{{episode.dureeepisode}} min</span> {#{{episodeList.dureeepisode}}#}
+                            </div>
+                            <a href="#"> {#{{url}}#}
+                               <h6 class="epi-name text-white mb-0">{{episode.saisonid}} - Episode N° {{episode.numerodepisode}}</h6> {#{{episodeList.saisonid}} - Episode {{episodeList.numerodepisode}}#}
+                            </a>
+                         </div>
+                      </div>
+                   </div>
+                   <pre>
+                    {{ dump(episode) }}
+                   </pre> 
+                   {% endfor %}
+                   </div> 
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+ </div>
+
+{% endblock %}

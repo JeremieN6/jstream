@@ -22,7 +22,7 @@ class Saison
     private ?int $id = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $nombre_de_saison = null;
+    private ?int $nbrEpisodeDansLaSaison = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $featured_image = null;
@@ -66,14 +66,14 @@ class Saison
         return $this->id;
     }
 
-    public function getNombreDeSaison(): ?int
+    public function getNbrEpisodeDansLaSaison(): ?int
     {
-        return $this->nombre_de_saison;
+        return $this->nbrEpisodeDansLaSaison;
     }
 
-    public function setNombreDeSaison(?int $nombre_de_saison): self
+    public function setNbrEpisodeDansLaSaison(?int $nbrEpisodeDansLaSaison): self
     {
-        $this->nombre_de_saison = $nombre_de_saison;
+        $this->nbrEpisodeDansLaSaison = $nbrEpisodeDansLaSaison;
 
         return $this;
     }
