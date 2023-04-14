@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Animes;
+use App\Entity\Episode;
+use App\Entity\Saison;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -43,6 +45,8 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Animés', 'fas fa-list', Animes::class);
+        yield MenuItem::linkToCrud('Animés', 'fas fa-film', Animes::class);
+        yield MenuItem::linkToCrud('Saisons', 'fas fa-list', Saison::class);
+        yield MenuItem::linkToCrud('Épisodes', 'fas fa-play', Episode::class);
     }
 }

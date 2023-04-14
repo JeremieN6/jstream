@@ -7,28 +7,26 @@
 <section class="iq-main-slider p-0">
    <div id="tvshows-slider">
 
-    {% for animeSaison in AnimeSaisons %}
       {% for anime in Animes %}
-    {#  {% set url = path('show_anime',{'slug': anime.slug, 'id': anime.id}) %} #}
+     {% set url = path('show_anime',{'slug': anime.slug, 'id': anime.id}) %}
       <div>
-         <a href="#"> {#{{url}}#}
+         <a href="{{url}}"> {###}
             <div class="shows-img">
                <img src="{{ vich_uploader_asset(anime, 'imageFile') }}" class="w-100" alt="">
                <div class="shows-content">
                   <h4 class="text-white mb-1">{{anime.titre}}</h4>
                   <div class="movie-time d-flex align-items-center">
                      <div class="badge badge-secondary p-1 mr-2">{{anime.ageMax}} ans</div>
-                        {% if animeSaison.nombredesaisons > 1 %}
-                        <span class="text-white"> {{animeSaison.nombredesaisons}} Saisons</span> {##}
+                        {% if anime.nbrDeSaisonsDansAnime > 1 %}
+                        <span class="text-white"> {{anime.nbrDeSaisonsDansAnime}} Saisons</span> {##}
                         {% else %}
-                        <span class="text-white"> {{animeSaison.nombredesaisons}} Saison</span> {##}
+                        <span class="text-white"> {{anime.nbrDeSaisonsDansAnime}} Saison</span> {##}
                         {% endif %} 
                   </div>
                </div>
             </div>
          </a>
       </div>
-      {% endfor %}
       {% endfor %}
 </section>
 <!-- Slider End -->
@@ -43,11 +41,10 @@
                </div>
                <div class="favorites-contens">
                   <ul class="favorites-slider list-inline  row p-0 mb-0">
-                    {% for animeSaison in AnimeSaisons %}
                      {% for anime in Animes %}
-                     {# {% set url = path('show_anime',{'slug': anime.slug, 'id': anime.id}) %}  #}
+                     {% set url = path('show_anime',{'slug': anime.slug, 'id': anime.id}) %} 
                      <li class="slide-item">
-                        <a href="#"> {#{{ url }}#}
+                        <a href="{{ url }}"> {#{{ url }}#}
                            <div class="block-images position-relative">
                               <div class="img-box">
                                  <img src="{{ vich_uploader_asset(anime, 'imageFile') }}" class="img-fluid" alt="">
@@ -56,10 +53,10 @@
                                  <h6>{{anime.titre}}</h6>
                                  <div class="movie-time d-flex align-items-center my-2">
                                     <div class="badge badge-secondary p-1 mr-2">{{anime.ageMax}} ans</div>
-                                       {% if animeSaison.nombredesaisons > 1 %}
-                                       <span class="text-white">{{animeSaison.nombredesaisons}} Saisons</span> {##}
+                                       {% if anime.nbrDeSaisonsDansAnime > 1 %}
+                                       <span class="text-white">{{anime.nbrDeSaisonsDansAnime}} Saisons</span> {##}
                                        {% else %}
-                                       <span class="text-white">{{animeSaison.nombredesaisons}} Saison</span> {##}
+                                       <span class="text-white">{{anime.nbrDeSaisonsDansAnime}} Saison</span> {##}
                                        {% endif %} 
                                  </div>
                                  <div class="hover-buttons">
@@ -77,7 +74,6 @@
                            </div>
                         </a>
                      </li>
-                     {% endfor %}
                      {% endfor %}
                   </ul>
                </div>
