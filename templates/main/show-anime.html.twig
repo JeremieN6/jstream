@@ -60,12 +60,15 @@
     </section>
     <section class="container-fluid seasons">
         <div class="iq-custom-select d-inline-block sea-epi s-margin">
-            <select name="cars" class="form-control season-select">
+         <form>
+            <select name="season" class="form-control season-select">               
+               <option value="">Toutes les saisons</option>
                {% for saisonAnime in saisonList %}
-                {# {% for animeSaison in AnimeSaisons %} #}             
-               {#season{{saison.saison_number}}#}<option value="season 1">{{ saisonAnime.titresaison }}</option> {#{{ saison.saison_number }}#}
+               <option value="{{ saisonAnime.id }}">{{ saisonAnime.titresaison }}</option> {#{{ saison.saison_number }}#}
                {% endfor %}
             </select>
+            <button type="submit">Filtrer</button>
+         </form>
          </div>
          <ul class="trending-pills d-flex nav nav-pills align-items-center text-center s-margin" role="tablist">
             <li class="nav-item">
@@ -107,9 +110,9 @@
                          </div>
                       </div>
                    </div>
-                   <pre>
+                   {# <pre>
                     {{ dump(episode) }}
-                   </pre> 
+                   </pre>  #}
                    {% endfor %}
                    </div> 
                 </div>

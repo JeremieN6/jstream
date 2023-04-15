@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Animes;
+use App\Entity\AnimeSaison;
 use App\Entity\Saison;
 use App\Entity\SaisonEpisodes;
 use App\Repository\AnimeSaisonRepository;
@@ -12,6 +13,7 @@ use App\Repository\SaisonEpisodesRepository;
 use App\Repository\SaisonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
@@ -30,30 +32,57 @@ class MainController extends AbstractController
      * @param $slug
      */
     public function show_anime(
-        AnimesRepository $animesRepository, 
+        AnimesRepository $animesRepository,
+        AnimesRepository $animeTest,
         EpisodeRepository $episodeRepository,
         SaisonRepository $saisonRepository,
         SaisonEpisodesRepository $saisonEpisodesRepository,
         Saison $saisonAnimeid,
         SaisonEpisodes $saison_id,
+        Request $request,
         $id): Response
     {
-    
+        
+        //Récupérer l'ID de l'anime
         $anime = $animesRepository->find($id);
+
+        //Récupérer la liste des saisons de l'animé sélectionné
+        $saisonList = $saisonRepository->findBy(['anime_id' => $id]);
+
+        //Récupérer toutes les saisons d'un animé
         $saisons = $saisonRepository->findBy(['anime_id' => $saisonAnimeid]);
+
+        //Récupérer tous les épisodes en rapport à l'animé sélectionné
         $episodesList = [];
         foreach ($saisons as $saison_id) {
             $episodesSaison = $episodeRepository->findBy(['saison_id' => $saison_id]);
             $episodesList = array_merge($episodesList, $episodesSaison);
         }
 
-        $saisonList = $saisonRepository->findBy(['anime_id' => $id]);
+            // Récupération de l'ID de la saison sélectionnée dans le menu déroulant
+             $seasonId = $request->query->get('season');
+
+            // Récupération des épisodes de l'animé correspondant à la saison sélectionnée
+            if ($seasonId) {
+                $episodesList = $episodeRepository->findBy(['saison_id' => $seasonId]);
+            } else {
+                // Si aucune saison n'a été sélectionnée, on affiche tous les épisodes de l'animé
+                $episodesList = [];
+                foreach ($saisons as $saison_id) {
+                    $episodesSaison = $episodeRepository->findBy(['saison_id' => $saison_id]);
+                    $episodesList = array_merge($episodesList, $episodesSaison);
+                }
+            }
+    
 
         return $this->render('main/show-anime.html.twig', [
             'Anime' => $animesRepository->find($id),
+            'animeParId' => $anime,
             'listEpisodes' => $episodesList,
             'saisons' => $saisonRepository,
             'saisonList' => $saisonList,
+            'saisons' => $saisons
+                // 'episodes' => $episodesList
         ]);
     }
 
