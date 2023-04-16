@@ -28,6 +28,58 @@ class MainController extends AbstractController
     }
 
     /**
+     * @Route ("/{slug}/{id}/saison{numero_de_saison}/episode/{numero_d_episode}", name="show_episode")
+     * @param $slug
+     * @param $numero_de_saison
+     * @param $numero_d_episode
+     */
+    public function episodeDetail(int $id, 
+    AnimesRepository $animesRepository, 
+    EpisodeRepository $episodeRepository, 
+    SaisonRepository $saisonRepository,
+    Saison $saisonAnimeid,): Response
+    {
+        $episode = $episodeRepository->find($id);
+        if (!$episode) {
+            throw $this->createNotFoundException('L\'épisode demandé n\'existe pas');
+        }
+    
+        // Récupération de la saison à laquelle appartient l'épisode
+        $saison = $saisonRepository->find($episode->getSaisonId()->getId());
+        if (!$saison) {
+            throw $this->createNotFoundException('La saison demandée n\'existe pas');
+        }
+    
+        // Récupération des autres épisodes de la même saison
+        $autresEpisodes = $episodeRepository->findBy([
+            'saison_id' => $saison,
+        ]);
+
+        //Récupérer la liste des saisons de l'animé sélectionné
+        $saisonList = $saisonRepository->findBy(['anime_id' => $id]);
+
+        //Récupérer toutes les saisons d'un animé
+        $saisons = $saisonRepository->findBy(['anime_id' => $saisonAnimeid]);
+
+        //Récupérer tous les épisodes en rapport à l'animé sélectionné
+        $episodesList = [];
+        foreach ($saisons as $saison_id) {
+            $episodesSaison = $episodeRepository->findBy(['saison_id' => $saison_id]);
+            $episodesList = array_merge($episodesList, $episodesSaison);
+        }
+    
+        // Passage des données récupérées à la vue
+        return $this->render('main/episode_detail.html.twig', [
+            'Anime' => $animesRepository->find($id),
+            'saison' => $saison,
+            'saisonList' => $saisonList,
+            'episode' => $episode,
+            'listEpisodes' => $episodesList,
+            'autresEpisodes' => $autresEpisodes,
+        ]);
+    }
+
+    /**
      * @Route ("/{id}/{slug}", name="show_anime")
      * @param $slug
      */
@@ -59,20 +111,20 @@ class MainController extends AbstractController
             $episodesList = array_merge($episodesList, $episodesSaison);
         }
 
-            // Récupération de l'ID de la saison sélectionnée dans le menu déroulant
-             $seasonId = $request->query->get('season');
+        // Récupération de l'ID de la saison sélectionnée dans le menu déroulant
+            $seasonId = $request->query->get('season');
 
-            // Récupération des épisodes de l'animé correspondant à la saison sélectionnée
-            if ($seasonId) {
-                $episodesList = $episodeRepository->findBy(['saison_id' => $seasonId]);
-            } else {
-                // Si aucune saison n'a été sélectionnée, on affiche tous les épisodes de l'animé
-                $episodesList = [];
-                foreach ($saisons as $saison_id) {
-                    $episodesSaison = $episodeRepository->findBy(['saison_id' => $saison_id]);
-                    $episodesList = array_merge($episodesList, $episodesSaison);
-                }
+        // Récupération des épisodes de l'animé correspondant à la saison sélectionnée
+        if ($seasonId) {
+            $episodesList = $episodeRepository->findBy(['saison_id' => $seasonId]);
+        } else {
+            // Si aucune saison n'a été sélectionnée, on affiche tous les épisodes de l'animé
+            $episodesList = [];
+            foreach ($saisons as $saison_id) {
+                $episodesSaison = $episodeRepository->findBy(['saison_id' => $saison_id]);
+                $episodesList = array_merge($episodesList, $episodesSaison);
             }
+        }
     
 
         return $this->render('main/show-anime.html.twig', [

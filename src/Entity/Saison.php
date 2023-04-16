@@ -55,6 +55,9 @@ class Saison
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description_saison = null;
 
+    #[ORM\Column]
+    private ?int $numeroDeSaison = null;
+
     public function __construct()
     {
         $this->episodes = new ArrayCollection();
@@ -228,6 +231,18 @@ class Saison
     public function __toString()
     {
         return $this->titre_saison;
+    }
+
+    public function getNumeroDeSaison(): ?int
+    {
+        return $this->numeroDeSaison;
+    }
+
+    public function setNumeroDeSaison(int $numeroDeSaison): self
+    {
+        $this->numeroDeSaison = $numeroDeSaison;
+
+        return $this;
     }
 
 }
