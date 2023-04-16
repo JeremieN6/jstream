@@ -24,7 +24,8 @@ class SaisonCrudController extends AbstractCrudController
         return [
             // IdField::new('id'),
             AssociationField::new('anime_id', 'Nom de l\'Animé'),
-            TextField::new('titre_saison','N° de la saison - Titre de la saison'),
+            TextField::new('titre_saison','Titre de la saison'),
+            IntegerField::new('numero_de_saison', 'N° de la saison'),
             IntegerField::new('nbrEpisodeDansLaSaison', 'Nombre d\'épisode dans la saison'),
             TextEditorField::new('description_saison', 'Description'),
             TextField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),

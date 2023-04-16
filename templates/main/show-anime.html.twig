@@ -83,17 +83,17 @@
        <div class="tab-content">
           <div id="episodes" class="tab-pane fade active show" role="tabpanel">
              <div class="block-space">
-               {# {% set url = path('show_episode',{'slug': targetAnime.nom,'id': targetAnime.id,'saison_number': saisons.saison_number, 'episode_number': episode.episode_number}) %}  #}
                 <div class="row">  
                     {% for episode in listEpisodes %}
-                   <div class="col-1-5 col-md-6 iq-mb-30">
+                    {% set url = path('show_episode',{'slug':Anime.slug,'id':Anime.id,'numero_de_saison':episode.saisonid.numerodesaison, 'numero_d_episode': episode.numerodepisode}) %}                    
+                    <div class="col-1-5 col-md-6 iq-mb-30">
                       <div class="epi-box">
                          <div class="epi-img position-relative">
                              <img src="{{ vich_uploader_asset(episode, 'imageFile') }}" class="img-fluid img-zoom" alt="{{episode.titreepisode}}">
                              <div class="episode-number">{{episode.numerodepisode}}</div>
                             <div class="episode-play-info">
                                <div class="episode-play">
-                                  <a href="#"> {#{{url}}#}
+                                  <a href="{{url}}"> {#{{url}}#}
                                      <i class="ri-play-fill"></i>
                                   </a>
                                </div>
@@ -104,7 +104,7 @@
                                <span class="text-white">{{Anime.titre}}</span>
                                <span class="text-primary">{{episode.dureeepisode}} min</span> {#{{episodeList.dureeepisode}}#}
                             </div>
-                            <a href="#"> {#{{url}}#}
+                            <a href="{{url}}"> {#{{url}}#}
                                <h6 class="epi-name text-white mb-0">{{episode.saisonid}} - Episode N° {{episode.numerodepisode}}</h6> {#{{episodeList.saisonid}} - Episode {{episodeList.numerodepisode}}#}
                             </a>
                          </div>
