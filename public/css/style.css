@@ -85,7 +85,7 @@ header .navbar ul li:last-child { margin-right: 0; }
 #home-slider .slick-bg.s-bg-1 { background-image: url(../images/slider/slider1.jpg); }
 #home-slider .slick-bg.s-bg-2 { background-image: url(../images/slider/slider2.jpg); }
 #home-slider .slick-bg.s-bg-3 { background-image: url(../images/slider/slider3.jpg); }
-.trailor-video { position: absolute; bottom: 0; right: 0; z-index: 999; }
+.trailor-video { position: inherit; bottom: 0; right: 0; z-index: 999; }
 .channel-name { color: var(--iq-primary); font-size: 20px; margin-left: 10px; letter-spacing: 2.5px; font-weight: 500; }
 .c-logo { width: 130px; }
 .channel-logo { border-left: 5px solid var(--iq-primary); background: transparent linear-gradient(270deg, rgba(11, 1, 2, 0) 0%, rgba(255, 55, 65, 0.3) 100%); padding: 10px 10px 10px 15px; width: 255px; position: relative; overflow: hidden; }

@@ -13,17 +13,51 @@
          <a href="{{url}}"> {###}
             <div class="shows-img">
                <img src="{{ vich_uploader_asset(anime, 'imageFile') }}" class="w-100" alt="">
-               <div class="shows-content">
+               <div class="shows-content h-100">
+                  <div class="row align-items-center h-100">
+                     <div class="col-lg-7 col-md-12 anime_description">
+                        <h1 class="slider-text big-title title text-uppercase personal_title_h1" data-animation-in="fadeInLeft" data-delay-in="0.6">{{anime.titre}}</h1>
+                        <div class="flex-wrap align-items-center fadeInLeft animated" data-animation-in="fadeInLeft" style="opacity: 1;">
+                           <div class="d-flex align-items-center movie-banner-time">
+                              <span class="badge badge-secondary p-2"><i class="fa fa-eye"></i> 875 Views</span>
+                              <span class="ml-3">⛔ -{{anime.ageMax}}ans</span>
+                              <span class="mx-3"><i class="ri-checkbox-blank-circle-fill"></i></span>
+                              {% if anime.nbrDeSaisonsDansAnime > 1 %}
+                              <span class="trending-year"> {{anime.nbrDeSaisonsDansAnime}} Saisons</span> {##}
+                              {% else %}
+                              <span class="trending-year"> {{anime.nbrDeSaisonsDansAnime}} Saison</span> {##}
+                              {% endif %}
+                           </div>
+                           <p class="movie-banner-text" data-animation-in="fadeInUp" data-delay-in="1.2">
+                              {{anime.description | striptags | slice(0, 150) ~ '...'}}
+                           </p>
+                        </div>
+                        <div class="d-flex align-items-center r-mb-23" data-animation-in="fadeInUp" data-delay-in="1.2">
+                           <a href="movie-details.html" class="btn btn-hover iq-button"><i class="fa fa-play mr-2" aria-hidden="true"></i>Play</a>
+                        </div>
+                     </div>
+                     <div class="col-lg-5 col-md-12 trailor-video iq-slider d-none d-lg-block">
+                        <a href="video/trailer.mp4" class="video-open playbtn">
+                           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7" xml:space="preserve">
+                              <polygon class="triangle" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1 "></polygon>
+                              <circle class="circle" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle>
+                           </svg>
+                           <span class="w-trailor">Voir en détail</span>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               {# <div class="shows-content">
                   <h4 class="text-white mb-1">{{anime.titre}}</h4>
                   <div class="movie-time d-flex align-items-center">
                      <div class="badge badge-secondary p-1 mr-2">{{anime.ageMax}} ans</div>
                         {% if anime.nbrDeSaisonsDansAnime > 1 %}
-                        <span class="text-white"> {{anime.nbrDeSaisonsDansAnime}} Saisons</span> {##}
+                        <span class="text-white"> {{anime.nbrDeSaisonsDansAnime}} Saisons</span> 
                         {% else %}
-                        <span class="text-white"> {{anime.nbrDeSaisonsDansAnime}} Saison</span> {##}
+                        <span class="text-white"> {{anime.nbrDeSaisonsDansAnime}} Saison</span>
                         {% endif %} 
                   </div>
-               </div>
+               </div> #}
             </div>
          </a>
       </div>
