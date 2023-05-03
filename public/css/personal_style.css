@@ -1,0 +1,174 @@
+.personal_title_h1{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-weight: bold;
+    font-size: 5.13em;
+}
+.movie-banner-text{
+    width: 80%;
+}
+.trailor-video { position: inherit; bottom: 0; right: 0; z-index: 999; }
+
+/*---------------------------------------------------------------------
+                      FOOTER
+-----------------------------------------------------------------------*/
+.container_footer{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5em;
+    width: 100%;
+}
+.footer_col1{
+    width: 50%;
+}
+.footer_row2{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.footer_row2 .menu-item{
+    display: inline-block;
+    padding-right: 1.875em;
+    padding-bottom: 0.938em;
+    list-style: none;
+    margin-bottom: 0.938em;
+}
+.footer_col2 .footer-link-title p{
+    font-weight: bold;
+}
+.menu-footer-link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: -60px;
+    list-style: none;
+    font-size: 1vw;
+    width: 100%;
+}
+
+.menu-footer-link li{
+    width: 100%;
+}
+
+.footer-link-title{
+    display: flex;
+    justify-content: center;
+    font-size: 1.5vw;
+}
+
+.info-share{
+    list-style: none;
+    padding-left: 0;
+}
+.info-share li{
+    position: relative;
+    display: inline-block;
+    width: 2.5em;
+    height: 2.5em;
+    text-align: center;
+    line-height: 2.5em;
+    margin-right: 0em;
+    color: var(--iq-white);
+    font-size: 1.063em;
+    border-radius: 50%;
+    background: rgba(41, 41, 41, 0.76);
+    transition: all 0.4s ease 0s;
+}
+.footer_col3{
+    width: 25%;
+    font-size: 2vw;
+}
+.container_img{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+.content_img{
+    width: 50%;
+    margin-right: 20px;
+}
+/*---------------------------------------------------------------------
+                      FOOTER
+-----------------------------------------------------------------------*/
+
+@media (min-width: 300px) and (max-width:600px){
+/*---------------------------------------------------------------------
+                      Anime Banner mobile
+-----------------------------------------------------------------------*/
+.anime_description{
+    padding: 2em;
+    font-size: 9px;
+}
+/*---------------------------------------------------------------------
+                      Anime Banner mobile
+-----------------------------------------------------------------------*/
+}
+@media (max-width: 768px){
+/*---------------------------------------------------------------------
+                      Anime Banner mobile
+-----------------------------------------------------------------------*/
+.anime_description{
+    padding: 2em;
+}
+.personal_title_h1 {
+    font-size: 2.13em;
+}
+.movie-banner-text {
+    width: 70%;
+    font-size: 12px;
+}
+.ri-checkbox-blank-circle-fill:before {
+    font-size: 10px;
+}
+.trending-year{
+    font-size: 10px;
+}
+.iq-main-slider {
+    padding-top: 0px!important;
+}
+/*---------------------------------------------------------------------
+                      Anime Banner mobile
+-----------------------------------------------------------------------*/
+
+
+/*---------------------------------------------------------------------
+                      FOOTER mobile
+-----------------------------------------------------------------------*/
+.container_footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    width: 100%;
+}
+.footer_row2 {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.footer_col1{
+    width: 100%;
+}
+.menu-footer-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+    font-size: 2vw;
+    width: 100%;
+}
+/*---------------------------------------------------------------------
+                      FOOTER mobile
+-----------------------------------------------------------------------*/
+}
