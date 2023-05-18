@@ -6,7 +6,7 @@
    <!-- Banner Start -->
    <div class="video-container iq-main-slider">
     <video class="video d-block" controls loop>
-       <source src="{{ asset('upload/videos/featured/S01E01.mp4') }}" type="video/mp4">
+       <source src="{{ vich_uploader_asset(currentEpisode, 'videoFile') }}" type="video/mp4">
     </video>
  </div>
  <!-- Banner End -->
@@ -15,16 +15,16 @@
        <div class="row">
           <div class="col-lg-12">
              <div class="trending-info season-info g-border">
-                <h4 class="trending-text big-title text-uppercase mt-0">{{Anime.titre}}</h4>
-                <div class="d-flex align-items-center text-white text-detail episode-name mb-0">
-                        {% for saison in saison %}
+               <h1 class="trending-text big-title text-uppercase mt-0 personal_title_h1">{{Anime.titre}}</h1>
+                <div class="d-flex flex-column align-items-flex-lefttext-white text-detail episode-name mb-0">
+                     {% for saison in saison %}
                     {% for episode in autresEpisodes %}
                     <span>S0{{saison.saison_number}}E0{{episode.episode_number}}</span>
                    <span class="trending-year">{{episode.episode_name}}</span>
                 </div>
-                <p class="trending-dec w-100 mb-0">{{ episode.descriptionepisode|raw}}</p>
                      {% endfor %}        
                   {% endfor %}
+                  <p class="trending-dec w-100 mb-0">{{ currentEpisode.descriptionepisode|raw}}</p>
                 <ul class="list-inline p-0 mt-4 share-icons music-play-lists">
                    <li><span><i class="ri-add-line"></i></span></li>
                    <li><span><i class="ri-heart-fill"></i></span></li>
@@ -50,7 +50,7 @@
                 <div class="col-sm-12 overflow-hidden">
                    <div class="iq-main-header d-flex align-items-center justify-content-between">
                       <h4 class="main-title">Tous les episodes</h4>
-                      <a href="mha-single.html" class="text-primary">Voir tout</a>
+                      <a href="{{path('show_anime',{'slug': Anime.slug, 'id': Anime.id})}}" class="text-primary">Voir tout</a>
                    </div>
                 </div>
              </div>

@@ -27,7 +27,7 @@ class Episode
     #[ORM\Column(length: 255)]
     private ?string $titre_episode = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:Types::TEXT)]
     private ?string $description_episode = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -35,6 +35,9 @@ class Episode
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $featured_image = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $featured_video = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $created_at = null;
@@ -57,6 +60,12 @@ class Episode
      * @var File
      */
     private $imageFile;
+
+    /**
+     * @Vich\UploadableField(mapping="featured_videos", fileNameProperty="featured_video")
+     * @var File
+     */
+    private $videoFile;
 
     public function __construct()
     {
@@ -124,6 +133,18 @@ class Episode
     public function setFeaturedImage(?string $featured_image): self
     {
         $this->featured_image = $featured_image;
+
+        return $this;
+    }
+
+    public function getFeaturedVideo(): ?string
+    {
+        return $this->featured_video;
+    }
+
+    public function setFeaturedVideo(?string $featured_video): self
+    {
+        $this->featured_video = $featured_video;
 
         return $this;
     }
@@ -216,6 +237,21 @@ class Episode
         $this->imageFile = $image;
 
          if($image) {
+             $this->created_at = new \DateTime('now');
+         }
+
+    }
+
+    public function getVideoFile(File $video = null)
+    {
+        return $this->videoFile;
+    }
+
+    public function setVideoFile(File $video = null)
+    {        
+        $this->videoFile = $video;
+
+         if($video) {
              $this->created_at = new \DateTime('now');
          }
 

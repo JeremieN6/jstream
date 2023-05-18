@@ -1,3 +1,15 @@
+/*---------------------------------------------------------------------
+                      ANNEXE
+-----------------------------------------------------------------------*/
+.anime_description a, 
+.anime_description a:hover,
+.anime_description a:active{
+    color: inherit;
+    text-decoration: inherit;
+}
+/*---------------------------------------------------------------------
+                      ANNEXE
+-----------------------------------------------------------------------*/
 .personal_title_h1{
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-weight: bold;
@@ -110,17 +122,36 @@
 }
 @media (max-width: 768px){
 /*---------------------------------------------------------------------
+                      ANNEXE
+-----------------------------------------------------------------------*/
+.anime_description a, 
+.anime_description a:hover,
+.anime_description a:active{
+    color: inherit;
+    text-decoration: inherit;
+}
+/*---------------------------------------------------------------------
+                      ANNEXE
+-----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------
                       Anime Banner mobile
 -----------------------------------------------------------------------*/
 .anime_description{
     padding: 2em;
 }
 .personal_title_h1 {
-    font-size: 2.13em;
+    font-size: 5vh;
+    margin: 5px 0 15px 0;
 }
 .movie-banner-text {
     width: 70%;
     font-size: 12px;
+    margin: auto 0 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .ri-checkbox-blank-circle-fill:before {
     font-size: 10px;
@@ -153,6 +184,8 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    font-size: 3vw;
+    margin: 2em 0 2em 0;
 }
 .footer_col1{
     width: 100%;
@@ -168,7 +201,42 @@
     font-size: 2vw;
     width: 100%;
 }
+.footer-link-title {
+    display: flex;
+    justify-content: center;
+    font-size: 2.5vw;
+}
+.footer_col3 .content_img {
+    width: 100%;
+    margin-right: 20px;
+}
+.container_img {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+.content_img {
+    width: 100%;
+    margin-right: 20px;
+    margin-left: 20px;
+}
 /*---------------------------------------------------------------------
                       FOOTER mobile
+-----------------------------------------------------------------------*/
+}
+@media (min-width: 768px){
+/*---------------------------------------------------------------------
+                      ANNEXE
+-----------------------------------------------------------------------*/
+.anime_description a, 
+.anime_description a:hover,
+.anime_description a:active,
+a:hover{
+    color: inherit !important;
+    text-decoration: inherit !important ;
+}
+/*---------------------------------------------------------------------
+                      ANNEXE
 -----------------------------------------------------------------------*/
 }

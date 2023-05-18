@@ -125,16 +125,18 @@
                                                 </div>
                                              </div>
                                           </a> #}
+                                          {% if app.user %}
                                           <a href="{{ path('parametres') }}" class="iq-sub-card setting-dropdown">
                                              <div class="media align-items-center">
                                                 <div class="right-icon">
                                                    <i class="ri-settings-4-line text-primary"></i>
                                                 </div>
                                                 <div class="media-body ml-3">
-                                                   <h6 class="mb-0 ">Paramètres</h6>
+                                                   <h6 class="mb-0 ">Mon profil</h6>
                                                 </div>
-                                             </div>
+                                             </div>   
                                           </a>
+                                          {% endif %}
                                           <a href="{{ path('abonnement') }}" class="iq-sub-card setting-dropdown">
                                              <div class="media align-items-center">
                                                 <div class="right-icon">
@@ -210,16 +212,18 @@
                                            </div>
                                         </div>
                                      </a> #}
+                                     {% if app.user %}
                                      <a href="{{ path('parametres') }}" class="iq-sub-card setting-dropdown">
                                         <div class="media align-items-center">
                                            <div class="right-icon">
                                               <i class="ri-settings-4-line text-primary"></i>
                                            </div>
                                            <div class="media-body ml-3">
-                                              <h6 class="mb-0 ">Paramètre du compte</h6>
+                                              <h6 class="mb-0 ">Mon profil</h6>
                                            </div>
                                         </div>
                                      </a>
+                                     {% endif %}
                                      <a href="{{ path('abonnement') }}" class="iq-sub-card setting-dropdown">
                                         <div class="media align-items-center">
                                            <div class="right-icon">

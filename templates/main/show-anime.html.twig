@@ -7,7 +7,7 @@
    style="background-image: url({{vich_uploader_asset(Anime, 'imageFile') }})">
     <div class="banner-caption">
        <div class="position-relative mb-4">
-          <a href="mha-s01e01.html" class="d-flex align-items-center">
+          <a href="{{ path('show_episode', {'slug':Anime.slug,'id':Anime.id,'numero_de_saison':1, 'numero_d_episode': 1}) }}" class="d-flex align-items-center">
              <div class="play-button">
                 <i class="ri-play-line"></i>
              </div>
@@ -67,7 +67,12 @@
                <option value="{{ saisonAnime.id }}">{{ saisonAnime.titresaison }}</option> {#{{ saison.saison_number }}#}
                {% endfor %}
             </select>
-            <button type="submit">Filtrer</button>
+            <div class="d-flex align-items-center r-mb-23 mt-3" data-animation-in="fadeInUp" data-delay-in="1.2">
+               <button type="submit" class="btn btn-hover iq-button">
+                  <i class="fa fa-filter mr-2" aria-hidden="true"></i>Filtrer
+               </button>
+            </div>
+            {# <button type="submit">Filtrer</button> #}
          </form>
          </div>
          <ul class="trending-pills d-flex nav nav-pills align-items-center text-center s-margin" role="tablist">
