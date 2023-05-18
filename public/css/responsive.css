@@ -59,7 +59,7 @@
   .device-margin { margin-top: 15px; }
   #home-slider h1.slider-text { font-size: 35px;}
   header .navbar ul li{display:block;}
-  .iq-main-slider{padding-top:60px!important;}
+  /* .iq-main-slider{padding-top:60px!important;} */
   .m-profile {padding-top: 100px;padding-bottom: 60px;}
   .trending-info .trending-dec{width: 52%;}
 }

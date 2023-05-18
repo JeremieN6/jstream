@@ -157,8 +157,10 @@ a {
 }
 
 a:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  /* color: #0056b3;
+  text-decoration: underline; */
+  color: inherit;
+  text-decoration: inherit;
 }
 
 a:not([href]):not([tabindex]) {

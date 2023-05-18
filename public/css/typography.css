@@ -63,8 +63,10 @@ General
 body { font-family: 'Roboto', sans-serif; font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.5; padding: 0; margin: 0; color: var(--iq-body-text); background: var(--iq-body-bg); }
 a, .btn { -webkit-transition: all 0.5s ease-out 0s; -moz-transition: all 0.5s ease-out 0s; -ms-transition: all 0.5s ease-out 0s; -o-transition: all 0.5s ease-out 0s; transition: all 0.5s ease-out 0s; }
 a, button, input, btn { outline: medium none; }
-a { color: var(--iq-body-text); text-decoration: none; }
-a:hover { text-decoration: none; }
+/* a { color: var(--iq-body-text); text-decoration: none; }
+a:hover { text-decoration: none; } */
+a { color: #FFF; text-decoration: inherit;}
+a:hover{text-decoration: inherit;}
 a.text-primary:focus, a.text-primary:hover { color: var(--iq-primary) !important; }
 hr { border-color: var(--iq-border-light); }
 h1, h2, h3, h4, h5, h6 { font-weight: 500; margin: 0px; line-height: 1.2; color: var(--iq-white); }
