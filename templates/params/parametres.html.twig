@@ -8,8 +8,8 @@
             <div class="col-lg-4 mb-3">
                 <div class="sign-user_card text-center">
                     <img src="images/user/user.jpg" class="rounded-circle img-fluid d-block mx-auto mb-3" alt="user">
-                    <h4 class="mb-3">Gon Freaks</h4>
-                    <p>Courte description de vous ici ! </p>
+                    <h4 class="mb-3">{{user.pseudo}}</h4>
+                    <p>{{user.description}}</p>
                     <a href="{{ path('modif_profil') }}" class="edit-icon text-primary">Modifier</a>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                     <div class="row align-items-center justify-content-between mb-3">
                         <div class="col-md-8">
                             <span class="text-light font-size-13">Date de naissance</span>
-                            <p class="mb-0">08-03-1995</p>
+                            <p class="mb-0">{{user.birthday.format('d/m/Y')}}</p>
                         </div>
                         <div class="col-md-4 text-md-right text-left">
                             <a href="{{ path('modif_profil') }}" class="text-primary">Changer</a>
@@ -46,7 +46,7 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-md-8">
                             <span class="text-light font-size-13">Language</span>
-                            <p class="mb-0">Français</p>
+                            <p class="mb-0">{{user.favLangue}}</p>
                         </div>
                         <div class="col-md-4 text-md-right text-left">
                             <a href="{{ path('modif_profil') }}" class="text-primary">Changer</a>

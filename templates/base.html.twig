@@ -25,8 +25,6 @@
         <!-- Style -->
         <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
         <link rel="stylesheet" href="{{ asset('/css/personal_style.css') }}" />
-
-        <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
         <!-- Responsive -->
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
         <!-- Icones -->
@@ -41,7 +39,7 @@
             </div>
          </div>
         {% include 'header.html.twig' %}
-        {##} 
+        {% include "_partials/_flash.html.twig" %} 
         
        
         {% block body %}

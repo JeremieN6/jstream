@@ -31,6 +31,7 @@ class EpisodeCrudController extends AbstractCrudController
             TextEditorField::new('description_episode', 'Description'),
             IntegerField::new('duree_episode', 'Durée de l\'Episode'),
             TextField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),
+            TextField::new('videoFile')->setFormType(VichImageType::class)->hideOnIndex(),
             ImageField::new('featured_image')->setBasePath('upload/images/featured')->onlyOnIndex(),
         ];
     }

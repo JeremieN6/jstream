@@ -245,4 +245,14 @@ class Saison
         return $this;
     }
 
+    /**
+     * Renvoie une clé unique pour la saison
+     *
+     * @return string
+     */
+    public function getUniqueKey(): string
+    {
+        return $this->anime_id->getId() . '_' . $this->numeroDeSaison;
+    }
+
 }

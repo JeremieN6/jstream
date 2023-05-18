@@ -6,6 +6,7 @@
 parameters:
     app.path.featured_images: /upload/images/featured
     app.path.featured_videos: /upload/videos/featured
+    app.path.featured_profils: /upload/images/profil
 
 services:
     # default configuration for services in *this* file

@@ -7,9 +7,17 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Ignore;
+use Doctrine\DBAL\Types\Types;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+/**
+ * @Vich\Uploadable
+ */
+#[UniqueEntity(fields: ['email'], message: 'Il y a déjà un compte avec cet email !')]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -37,6 +45,37 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $pseudo = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $birthday = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updated_at = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $featured_image = null;
+
+    /**
+     * @Vich\UploadableField(mapping="featured_profils", fileNameProperty="featured_image")
+     * @Ignore()
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @Assert\Choice(choices={"homme", "femme", "non-binaire"}, message="Genre Invalide.")
+     */
+    #[ORM\Column(length: 125, nullable: true)]
+    private ?string $genre = null;
+
+    #[ORM\Column(length: 125, nullable: true)]
+    private ?string $favLangue = null;
 
     public function __construct() {
         $this->created_at = new \DateTimeImmutable();
@@ -147,4 +186,104 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(?string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(?\DateTimeInterface $birthday): self
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    public function getFeaturedImage(): ?string
+    {
+        return $this->featured_image;
+    }
+
+    public function setFeaturedImage(?string $featured_image): self
+    {
+        $this->featured_image = $featured_image;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getImageFile(File $image = null)
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(File $image = null)
+    {        
+        $this->imageFile = $image;
+
+         if($image) {
+             $this->updated_at = new \DateTime('now');
+         }
+
+    }
+
+    public function getGenre(): ?string
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?string $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getFavLangue(): ?string
+    {
+        return $this->favLangue;
+    }
+
+    public function setFavLangue(?string $favLangue): self
+    {
+        $this->favLangue = $favLangue;
+
+        return $this;
+    }
+    
 }
