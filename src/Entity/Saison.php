@@ -129,6 +129,21 @@ class Saison
         return $this;
     }
 
+    public function getImageFile(File $image = null)
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(File $image = null)
+    {        
+        $this->imageFile = $image;
+
+         if($image) {
+             $this->created_at = new \DateTime('now');
+         }
+
+    }
+
     /**
      * @return Collection<int, Episode>
      */
@@ -213,26 +228,6 @@ class Saison
         return $this;
     }
 
-    public function getImageFile(File $image = null)
-    {
-        return $this->imageFile;
-    }
-
-    public function setImageFile(File $image = null)
-    {        
-        $this->imageFile = $image;
-
-         if($image) {
-             $this->created_at = new \DateTime('now');
-         }
-
-    }
-
-    public function __toString()
-    {
-        return $this->titre_saison;
-    }
-
     public function getNumeroDeSaison(): ?int
     {
         return $this->numeroDeSaison;
@@ -243,6 +238,11 @@ class Saison
         $this->numeroDeSaison = $numeroDeSaison;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->titre_saison;
     }
 
     /**

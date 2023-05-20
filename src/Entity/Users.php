@@ -77,6 +77,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 125, nullable: true)]
     private ?string $favLangue = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
+    #[ORM\Column(type: 'string', length: 100)]
+    private $resetToken;
+
     public function __construct() {
         $this->created_at = new \DateTimeImmutable();
     }
@@ -282,6 +288,30 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFavLangue(?string $favLangue): self
     {
         $this->favLangue = $favLangue;
+
+        return $this;
+    }
+
+    public function getisVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setisVerified(?bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getresetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setresetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
 
         return $this;
     }
