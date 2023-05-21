@@ -8,8 +8,16 @@
             <div class="col-lg-4 mb-3">
                 <div class="sign-user_card text-center">
                     <img src="images/user/user.jpg" class="rounded-circle img-fluid d-block mx-auto mb-3" alt="user">
+                    {% if not user.pseudo %}
+                    <h4 class="mb-3">{{user.firstname}}</h4>
+                    {% else %}
                     <h4 class="mb-3">{{user.pseudo}}</h4>
+                    {% endif %}
+                    {% if not user.description %}
+                    <p>Cliquez sur modifier ci-dessus et parlez nous de vous en quelques mots. 🙂</p>
+                    {% else %}
                     <p>{{user.description}}</p>
+                    {% endif %}
                     <a href="{{ path('modif_profil') }}" class="edit-icon text-primary">Modifier</a>
                 </div>
             </div>
@@ -19,10 +27,10 @@
                     <div class="row align-items-center justify-content-between mb-3">
                         <div class="col-md-8">
                             <span class="text-light font-size-13">Email</span>
-                            <p class="mb-0"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="95f0edf4f8e5f9f0d5f2f8f4fcf9bbf6faf8">[email&#160;protégé]</a></p>
+                            <p class="mb-0"><a class="__cf_email__" data-cfemail="95f0edf4f8e5f9f0d5f2f8f4fcf9bbf6faf8">[email&#160;protégé]</a></p>
                         </div>   
                         <div class="col-md-4 text-md-right text-left">                      
-                            <a href="{{ path('modif_profil') }}" class="text-primary">Changer</a>
+                            <a href="{{ path('contact') }}" class="text-primary">Changer</a>
                         </div>
                     </div>
                     <div class="row align-items-center justify-content-between mb-3">
@@ -31,13 +39,17 @@
                             <p class="mb-0">**********</p>
                         </div>
                         <div class="col-md-4 text-md-right text-left">
-                            <a href="{{ path('modif_profil') }}" class="text-primary">Changer</a>
+                            <a href="{{ path('forgetten_password') }}" class="text-primary">Réinitialiser</a>
                         </div>
                     </div>
                     <div class="row align-items-center justify-content-between mb-3">
                         <div class="col-md-8">
                             <span class="text-light font-size-13">Date de naissance</span>
+                            {% if user.birthday %}
                             <p class="mb-0">{{user.birthday.format('d/m/Y')}}</p>
+                            {% else %}
+                            <p class="mb-0">Reneigne ta date de naissance 🍼</p>
+                            {% endif %}
                         </div>
                         <div class="col-md-4 text-md-right text-left">
                             <a href="{{ path('modif_profil') }}" class="text-primary">Changer</a>
@@ -46,7 +58,11 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-md-8">
                             <span class="text-light font-size-13">Language</span>
+                            {% if not user.favLangue %}
+                            <p class="mb-0">Choisis ta langue préféré ㊙️</p>
+                            {% else %}
                             <p class="mb-0">{{user.favLangue}}</p>
+                            {% endif %}
                         </div>
                         <div class="col-md-4 text-md-right text-left">
                             <a href="{{ path('modif_profil') }}" class="text-primary">Changer</a>

@@ -68,8 +68,9 @@
 
 .footer-link-title{
     display: flex;
-    justify-content: center;
-    font-size: 1.5vw;
+    justify-content: flex-start;
+    font-size: 15px;
+    margin-left: 10px;
 }
 
 .info-share{
@@ -101,7 +102,7 @@
     flex-direction: row;
 }
 .content_img{
-    width: 50%;
+    width: 35%;
     margin-right: 20px;
 }
 /*---------------------------------------------------------------------
@@ -184,7 +185,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    font-size: 3vw;
+    font-size: 15px;
     margin: 2em 0 2em 0;
 }
 .footer_col1{
@@ -238,5 +239,14 @@ a:hover{
 }
 /*---------------------------------------------------------------------
                       ANNEXE
+-----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------
+                      Page Show Anime
+-----------------------------------------------------------------------*/
+.container-fluid .seasons{
+    margin-top: -7em;
+}
+/*---------------------------------------------------------------------
+                      Page Show Anime
 -----------------------------------------------------------------------*/
 }

@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="iq-breadcrumb-one  iq-bg-over " style="background-image: url({{asset('images/about/bg_image_about.jpg')}});">
+   <div class="container-fluid">
+      <div class="row align-items-center">
+         <div class="col-sm-12">
+            <nav aria-label="breadcrumb" class="text-center iq-breadcrumb-two">
+               <h2 class="title">Politique de confidentialité</h2>
+               <ol class="breadcrumb main-bg">
+                  <li class="breadcrumb-item">
+                     <a href="{{path('main_page')}}">Accueil</a>
+                  </li>
+                  <li class="breadcrumb-item active">Politique de confidentialité</li>
+               </ol>
+            </nav>
+         </div>
+      </div>
+   </div>
+</div>
+   <!-- mastermind start -->
+   <main id="main" class="site-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <div class="iq-privacy-policy">
+                    <p class="text-center my-3 mb-5">
+                        Chez JStream, nous attachons une grande importance à la confidentialité de nos utilisateurs. Cette politique de confidentialité explique quelles informations personnelles sont collectées par JStream lorsque vous utilisez notre site web et comment nous les utilisons. Veuillez prendre le temps de lire attentivement cette politique afin de comprendre comment nous traitons vos données personnelles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-12 col-sm-12">
+             <div class="iq-privacy-policy">
+                <div class="mb-3">
+                <h4 class="mb-3">1. Collecte d'informations personnelles</h4>
+                <p class="my-3">Lorsque vous utilisez JStream, nous pouvons collecter certaines informations personnelles vous concernant, telles que votre nom, votre adresse e-mail et votre adresse IP. Ces informations peuvent être collectées lorsque vous vous inscrivez sur notre site, participez à des discussions ou utilisez nos services. Nous collectons ces informations dans le but de vous offrir une expérience personnalisée et d'améliorer nos services.</p><br>
+                </div>
+                <div class="mb-3">
+                <h4 class="mb-3">2. Passerelle de paiement d'un tiers - Informations financières</h4>
+                <p class="mb-2">Pour faciliter les paiements sur JStream, nous utilisons une passerelle de paiement d'un tiers sécurisée. Lorsque vous effectuez un achat sur notre site, les informations financières nécessaires (telles que les détails de votre carte de crédit) sont collectées et traitées uniquement par notre fournisseur de services de paiement. Nous ne stockons pas ces informations sur nos serveurs.</p>
+                {# <p class="mb-0">Vestibulum semper dolor id arcu finibus volutpat. Integer condimentum ex tellus, ac finibus metus sodales in. Proin blandit congue ipsum ac dapibus. Integer blandit eros elit, vel luctus tellus finibus in. Aliquam non urna ut leo vestibulum mattis ac nec dolor. Nulla libero mauris, dapibus non aliquet viverra, elementum eget lorem</p> #}
+                <br>
+                
+                </div>
+                <div class="mb-3">
+                <h4 class="mb-3">3. Utilisation des informations collectées</h4>
+                <p class="mb-2">
+                    Les informations personnelles collectées par JStream sont utilisées pour fournir, maintenir et améliorer nos services, personnaliser votre expérience utilisateur, vous contacter concernant votre compte ou les services que nous proposons, et vous envoyer des communications marketing si vous avez donné votre consentement. Nous ne vendons ni ne partageons vos informations personnelles avec des tiers à des fins de marketing sans votre consentement explicite.
+                </p>
+                <br>
+                
+                </div>
+                <div class="mb-3">
+                <h4 class="mb-3">4. Sécurité des informations</h4>
+                <p class="">Nous prenons des mesures de sécurité appropriées pour protéger vos informations personnelles contre toute perte, utilisation abusive ou accès non autorisé. Cependant, veuillez noter qu'aucune méthode de transmission sur Internet ou de stockage électronique n'est totalement sécurisée. Nous ne pouvons donc pas garantir une sécurité absolue des informations.</p><br>
+                
+                </div>
+                <div class="mb-0">
+                <h4 class="mb-3">5. Conservation des données</h4>
+                <p class="mb-0">Nous conservons vos informations personnelles aussi longtemps que nécessaire pour atteindre les objectifs pour lesquels elles ont été collectées, sauf si la loi l'exige autrement. Si vous souhaitez que nous supprimions vos informations personnelles, veuillez nous contacter en utilisant les coordonnées fournies à la fin de cette politique..Nous conservons vos informations personnelles aussi longtemps que nécessaire pour atteindre les objectifs pour lesquels elles ont été collectées, sauf si la loi l'exige autrement. Si vous souhaitez que nous supprimions vos informations personnelles, veuillez nous contacter en utilisant les coordonnées fournies à la fin de cette politique.</p>
+                
+          </div>
+       </div>
+
+          </div>
+       </div>    
+    </div>
+ </main>
+   <!-- Main container end -->
+{% endblock %}

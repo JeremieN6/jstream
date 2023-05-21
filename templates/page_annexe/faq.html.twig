@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="iq-breadcrumb-one  iq-bg-over " style="background-image: url({{asset('images/about/bg_image_about.jpg')}});">
+   <div class="container-fluid">
+      <div class="row align-items-center">
+         <div class="col-sm-12">
+            <nav aria-label="breadcrumb" class="text-center iq-breadcrumb-two">
+               <h2 class="title">FAQ</h2>
+               <ol class="breadcrumb main-bg">
+                  <li class="breadcrumb-item">
+                     <a href="{{path('main_page')}}">Accueil</a>
+                  </li>
+                  <li class="breadcrumb-item active">FAQ</li>
+               </ol>
+            </nav>
+         </div>
+      </div>
+   </div>
+</div>
+   <!-- mastermind start -->
+   <main id="main" class="site-main">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-12 col-sm-12">
+
+             <div class="iq-accordion iq-accordion-square">
+
+                <div class="iq-accordion-block iq-active 1">
+                   <div class="iq-accordion-title">
+                      <div class="iq-icon-right">
+                         <i aria-hidden="true" class="fa fa-minus active"></i>
+                         <i aria-hidden="true" class="fa fa-plus inactive"></i>
+                      </div>
+                      <h4 class="mb-0 accordion-title iq-heading-title">         
+                         Qu'est ce que JStream ?     
+                      </h4>
+                   </div>                   
+                   <div class="iq-accordion-details" style="display:block;">                         
+                      <p class="iq-content-text">
+                        JStream est un site de streaming d'animé. Il a la particularité d'être destiné aux personnes qui préfèrent regarder ses animés avec une voix Française.</p>
+                   </div>
+                </div>
+                   
+                <div class="iq-accordion-block 2">
+                   <div class="iq-accordion-title">
+                      <div class="iq-icon-right">
+                         <i aria-hidden="true" class="fa fa-minus active"></i>
+                         <i aria-hidden="true" class="fa fa-plus inactive"></i>
+                      </div>
+                      <h4 class="mb-0 accordion-title iq-heading-title">         
+                         Est ce que mon compte fonctionne hors de France ?                           
+                      </h4>                 
+                   </div>
+
+                <div class="iq-accordion-details">                         
+                      <p class="iq-content-text"> 
+                        En effet, vous aurez la possibilité de visionner vos épisodes favoris où que vous soyez. Aucun VPN, aucune manipulation technique nécessaire.
+                        <br> Profitez en 😎 ! </p>
+                   </div>
+                </div>
+                   
+                <div class="iq-accordion-block 3">
+                   <div class="iq-accordion-title">
+                      <div class="iq-icon-right">
+                         <i aria-hidden="true" class="fa fa-minus active"></i>
+                         <i aria-hidden="true" class="fa fa-plus inactive"></i></div>
+                         <h4 class="mb-0 accordion-title iq-heading-title">         
+                            Je rencontre des problèmes de lecture vidéo. Que dois-je faire ?
+                         </h4>
+                      </div>                   
+                      <div class="iq-accordion-details">                         
+                         <p class="iq-content-text"> 
+                            Si vous rencontrez un souci lors de la lecture d'une vidéo, contactez notre équipe technique disponible 24h/24.
+                            Vous pouvez également simplement patienter, il peux s'agir d'un simple bug technique.
+                        </p>
+                      </div>
+                   </div>
+                   
+                   <div class="iq-accordion-block 4">
+                      <div class="iq-accordion-title">
+                         <div class="iq-icon-right">
+                            <i aria-hidden="true" class="fa fa-minus active"></i>
+                            <i aria-hidden="true" class="fa fa-plus inactive"></i>
+                         </div>
+                         <h4 class="mb-0 accordion-title iq-heading-title">         
+                            Comment je peux réinitialiser mon mot de passe ? 
+                         </h4>
+                      </div>
+                      <div class="iq-accordion-details">
+                      <p class="iq-content-text"> 
+                        Vous avez oubliez votre mot de passe ? Si c'est le cas, rendez vous sur la page paramètre de votre compte. 
+                        Cliquez sur l'icone avatar en haut à droite de votre écran. Cliquez sur l'onglet paramètre.
+                        Dans le tabelau de vos informations, vous trouverez la ligne concernant le mot de passe. En face vous trouverez un lien vers lequel vous pourrez réinitialiser votre mot de passe.</p>
+                   </div>
+                </div>
+                   
+                <div class="iq-accordion-block 5">
+                <div class="iq-accordion-title">
+                      <div class="iq-icon-right">
+                         <i aria-hidden="true" class="fa fa-minus active"></i>
+                         <i aria-hidden="true" class="fa fa-plus inactive"></i></div>
+                         <h4 class="mb-0 accordion-title iq-heading-title">
+                            Quels bénéfices j'obtiens avec les packs ?
+                         </h4>
+                      </div>                   
+                      <div class="iq-accordion-details">                         
+                         <p class="iq-content-text"> 
+                            Nous vous offrons la possibilité de choisir entre les différents packs, vous permettant ainsi de sélectionner celui qui correspond le plus à vos besoins.
+                            Si les publiciés ne vous dérange pas, il y a une offre pour vous. Si la qualité de l'image est essentiel à vos yeux, là encore il y a une offre qui saura satisfaire vos envies. </p>                        
+                      </div>
+                   </div>                        
+                </div>
+          </div>
+       </div>
+    </div>   
+ </main>
+{% endblock %}
