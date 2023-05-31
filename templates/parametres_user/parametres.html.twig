@@ -68,31 +68,39 @@
                             <a href="{{ path('modif_profil') }}" class="text-primary">Changer</a>
                         </div>
                     </div>
-                    <h5 class="mb-3 mt-4 pb-3 a-border">Détails d'abonnement</h5>
+                    {% if Plan %}
+                    <h5 class="mb-3 mt-4 pb-3 a-border">Détails de votre abonnement</h5>
                     <div class="row justify-content-between mb-3">
                         <div class="col-md-8 r-mb-15">
-                            <p>Système d'abonnement prévu pour Février 2021.</p>
-                            <a href="{{ path('modif_profil') }}" class="btn btn-hover">Annuler l'abonnement</a>
+                                <p class="text-body d-block mb-1">Vous êtes abonné au : {{ Plan.nom }}.</p>
+                                <p class="text-body d-block mb-1">Votre abonnement se termine le : {{ subscription.currentPeriodEnd.format('d/m/Y')}}</p>
+                            <a href="{{ path('contact') }}" class="btn btn-hover">Annuler l'abonnement</a>
                         </div>
                         <div class="col-md-4 text-md-right text-left">
                             <a href="{{ path('abonnement') }}" class="text-primary">Voir les plans d'abonnement</a>
                         </div>
                     </div>
+                    {% endif %}
+                    {% if not Plan %}
                     <h5 class="mb-3 mt-4 pb-3 a-border">Détails des plans</h5>
                     <div class="row justify-content-between mb-3">
                         <div class="col-md-8">
-                            <p>Premium</p>                                
+                            <p>Vous n'avez souscris à aucun plan pour le moment.</p>                            
                         </div>
                         <div class="col-md-4 text-md-right text-left">
                             <a href="{{ path('abonnement') }}" class="text-primary">Voir les Plans</a>
                         </div>
                     </div>
+                    {% endif %}   
                     <h5 class="mb-3 pb-3 mt-4 a-border">Paramètres</h5>
                     <div class="row">
                         <div class="col-12 setting">
-                            <a href="#" class="text-body d-block mb-1">Récente activité</a>
-                            <a href="#" class="text-body d-block mb-1">Déconnecter tout les appareils </a>
-                            <a href="#" class="text-body d-block">Télécharger vos informations personnelles</a>
+                            {% if Plan %}
+                            {# <a href="{{facture}}" class="text-body d-block mb-1">Télécharger ma dernière facture</a> #}
+                            {% endif %}    
+                            {# <a href="#" class="text-body d-block mb-1">Récente activité</a> #}
+                            <a href="{{ path('contact') }}" class="text-body d-block mb-1">Déconnecter tout les appareils </a>
+                            <a href="{{ path('contact') }}" class="text-body d-block">Télécharger vos informations personnelles</a>
                         </div>                            
                     </div>
                 </div>
