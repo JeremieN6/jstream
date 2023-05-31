@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Repository\InvoiceRepository;
+use App\Repository\PlanRepository;
+use App\Repository\SubscriptionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,29 +60,63 @@ class ParametresUserController extends AbstractController
         }
 
         return $this->render('parametres_user/manage_profil.html.twig', [
-            'controller_name' => 'MainPageController',
+            'controller_name' => 'ParametresUserController',
             'userForm' => $userForm->createView()
         ]);
     }
 
     #[Route('/parametres', name: 'parametres')]
-    public function mentions(): Response
+    public function mentions(
+        SubscriptionRepository $subscriptionRepository,
+        PlanRepository $planRepository,
+        InvoiceRepository $invoiceRepository,
+        InvoiceRepository $invoice,
+    ): Response
     {
 
         //On récupère l'utilisateur connecté
         $connectedUser = $this->getUser();
+        
+        // Vérifie si l'utilisateur est connecté
+        if ($connectedUser) {
+            // Récupère l'abonnement de l'utilisateur
+            // $facture = $invoiceRepository->findBy($invoice->getHostedInvoiceUrl());
+            $subscription = $subscriptionRepository ->findOneBy(['user' => $connectedUser]);
+            
+            if ($subscription) {
+                // Récupère le plan de l'abonnement
+                $plan = $planRepository->find($subscription->getPlan());
+                
+                if ($plan) {
+                    $nomPlan = $plan->getNom();
+                    // Fait quelque chose avec le nom du plan (l'affiche, le retourne, etc.)
+                    return $this->render('parametres_user/parametres.html.twig', [
+                        'controller_name' => 'ParametresUserController',
+                        'Plan' => $plan,
+                        'subscription' => $subscription,
+                        'user' => $connectedUser,
+                ]);
+            }
+                throw $this->createNotFoundException('Il n\'y a pas de plan');
+            }
+
+        }
+
+        $facture = $invoiceRepository->find($invoice->getHostedInvoiceUrl());
 
         return $this->render('parametres_user/parametres.html.twig', [
-            'controller_name' => 'MainPageController',
+            'controller_name' => 'ParametresUserController',
             'user' => $connectedUser,
         ]);
     }
 
     #[Route('/abonnement', name: 'abonnement')]
-    public function abonnement(): Response
+    public function abonnement(PlanRepository $planRepository): Response
     {
+        $plan = $planRepository->findAll();
         return $this->render('parametres_user/abonnement.html.twig', [
-            'controller_name' => 'MainPageController',
+            'Plan' => $plan,
+            'controller_name' => 'ParametresUserController',
         ]);
     }
 
@@ -87,7 +124,7 @@ class ParametresUserController extends AbstractController
     public function tarifs(): Response
     {
         return $this->render('parametres_user/pricing-plan.html.twig', [
-            'controller_name' => 'MainPageController',
+            'controller_name' => 'ParametresUserController',
         ]);
     }
 }

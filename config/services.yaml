@@ -8,6 +8,9 @@ parameters:
     app.path.featured_videos: /upload/videos/featured
     app.path.featured_profils: /upload/images/profil
     app.jwtsecret: '%env(JWT_SECRET)%'
+    stripe_webhook_secret: '%env(resolve:STRIPE_WEBHOOK_SECRET)%'
+    stripe_sk: '%env(resolve:STRIPE_SK)%'
+    stripe_pk: '%env(resolve:STRIPE_PK)%'
 
 services:
     # default configuration for services in *this* file
