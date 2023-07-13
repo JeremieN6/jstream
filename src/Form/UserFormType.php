@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserFormType extends AbstractType
@@ -28,16 +29,17 @@ class UserFormType extends AbstractType
             // ->add('firstname')
             // ->add('lastname')
             // ->add('created_at')
-                // ->add('imageFile', VichImageType::class, [
-                //     'label' => false,
-                //     'label_attr' =>[
-                //         'class' => 'rounded-circle img-fluid d-block mx-auto mb-3'
-                //     ],
-                //     'mapped' => false,
-                //     'required' => false,
-                //     'empty_data' => 'images/user/user.jpg',
-                    
-                // ])
+            ->add('imageFile', VichImageType::class, [
+                'label' => false,
+                'required' => false,
+                // 'mapped' => false,
+                'allow_delete' => true,
+                'download_uri' => false,
+                'image_uri' => true,
+                'label_attr' =>[
+                    'class' => 'ri-pencil-line upload-button'
+                ]                    
+            ])
             ->add('pseudo', TextType::class, [
                 'label' => 'Pseudo',
                 'attr' => ['placeholder' => 'Entre ton nouveau pseudo 🙂']

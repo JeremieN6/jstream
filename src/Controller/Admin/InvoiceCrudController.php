@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
@@ -23,7 +24,7 @@ class InvoiceCrudController extends AbstractCrudController
         return [
             AssociationField::new('subscription', 'Nom de l\'abonnement '),
             TextField::new('stripe_id'),
-            IntegerField::new('amount_paid'),
+            MoneyField::new('amount_paid')->setCurrency('EUR'),
             TextField::new('number', 'Numéro de Facture'),
             UrlField::new('hosted_invoice_url', 'Lien de la Facture'),
             DateField::new('created_at','Crée le')
