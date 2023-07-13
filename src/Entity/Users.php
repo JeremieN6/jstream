@@ -14,13 +14,14 @@ use Symfony\Component\Serializer\Annotation\Ignore;
 use Doctrine\DBAL\Types\Types;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Serializable;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 /**
  * @Vich\Uploadable
  */
 #[UniqueEntity(fields: ['email'], message: 'Il y a déjà un compte avec cet email !')]
-class Users implements UserInterface, PasswordAuthenticatedUserInterface
+class Users implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -366,5 +367,29 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function serialize()
+{
+    return serialize(array(
+        $this->id,
+        $this->email,
+        $this->password,
+        $this->featured_image,
+        // see section on salt below
+        // $this->salt,
+    ));
+}
+
+public function unserialize($serialized)
+{
+    list (
+        $this->id,
+        $this->email,
+        $this->password,
+        $this->featured_image,
+        // see section on salt below
+        // $this->salt
+    ) = unserialize($serialized);
+}
     
 }

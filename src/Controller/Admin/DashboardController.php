@@ -3,11 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Animes;
+use App\Entity\AnimeSaison;
 use App\Entity\Episode;
 use App\Entity\Saison;
 use App\Entity\Plan;
 use App\Entity\Subscription;
 use App\Entity\Invoice;
+use App\Entity\SaisonEpisodes;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -47,19 +49,28 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+        yield MenuItem::section('Accueil');
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+
+        yield MenuItem::section('Les animés');
         yield MenuItem::linkToCrud('Animés', 'fas fa-film', Animes::class);
+        yield MenuItem::linkToCrud('Animé par Saison', 'fas fa-film', AnimeSaison::class);
+
         yield MenuItem::linkToCrud('Saisons', 'fas fa-list', Saison::class);
         yield MenuItem::linkToCrud('Épisodes', 'fas fa-play', Episode::class);
+        yield MenuItem::linkToCrud('Episode par Saison', 'fas fa-play', SaisonEpisodes::class);
 
         yield MenuItem::section('Liste des abonnements');
-        yield MenuItem::linkToCrud('Plan', 'fas fa-paper-plane', Plan::class);
-        yield MenuItem::linkToCrud('Subscription', 'fas fa-cart-plus', Subscription::class);
-        yield MenuItem::linkToCrud('Invoice', 'fas fa-file-invoice', Invoice::class);
+        yield MenuItem::linkToCrud('Plans', 'fas fa-paper-plane', Plan::class);
+        yield MenuItem::linkToCrud('Abonnements', 'fas fa-cart-plus', Subscription::class);
+        yield MenuItem::linkToCrud('Factures', 'fas fa-file-invoice', Invoice::class);
+
+
         // yield MenuItem::subMenu('Visualisation', 'fas fa-list')->setSubItems([
-        //     MenuItem::linkToCrud('Plan', 'fas fa-paper-plan', Plan::class),
+        // yield MenuItem::subMenu('Visualisation', 'fas fa-list')->setSubItems([
+        //     MenuItem::linkToCrud('Plan', 'fas fa-paper-plane', Plan::class),
         //     MenuItem::linkToCrud('Subscription', 'fas fa-cart-plus', Subscription::class),
-        //     MenuItem::linkToCrud('Invoice', 'fas fa-fill-invoice', Invoice::class),
+        //     MenuItem::linkToCrud('Invoice', 'fas fa-file-invoice', Invoice::class),
         // ]);
 
 

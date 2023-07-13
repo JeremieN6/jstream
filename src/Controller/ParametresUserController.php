@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Form\UserFormType;
 use App\Repository\InvoiceRepository;
 use App\Repository\PlanRepository;
 use App\Repository\SubscriptionRepository;
+use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,17 +63,18 @@ class ParametresUserController extends AbstractController
 
         return $this->render('parametres_user/manage_profil.html.twig', [
             'controller_name' => 'ParametresUserController',
-            'userForm' => $userForm->createView()
+            'userForm' => $userForm->createView(),
+            'user' => $user
         ]);
     }
 
     #[Route('/parametres', name: 'parametres')]
     public function mentions(
+        UsersRepository $usersRepository,
         SubscriptionRepository $subscriptionRepository,
         PlanRepository $planRepository,
         InvoiceRepository $invoiceRepository,
-        InvoiceRepository $invoice,
-    ): Response
+        InvoiceRepository $invoice): Response
     {
 
         //On récupère l'utilisateur connecté
@@ -99,14 +102,22 @@ class ParametresUserController extends AbstractController
             }
                 throw $this->createNotFoundException('Il n\'y a pas de plan');
             }
-
         }
 
-        $facture = $invoiceRepository->find($invoice->getHostedInvoiceUrl());
+        // if($connectedUser)
+        // {
+        //     $hasAvatar = $usersRepository->getFeaturedImage() !== null;
+        // }
+        // else
+        // {
+        //     return null;
+        // }
 
         return $this->render('parametres_user/parametres.html.twig', [
             'controller_name' => 'ParametresUserController',
+            // 'hasAvatar' => $hasAvatar,
             'user' => $connectedUser,
+            'subscription' => $subscription,
         ]);
     }
 
@@ -114,6 +125,7 @@ class ParametresUserController extends AbstractController
     public function abonnement(PlanRepository $planRepository): Response
     {
         $plan = $planRepository->findAll();
+
         return $this->render('parametres_user/abonnement.html.twig', [
             'Plan' => $plan,
             'controller_name' => 'ParametresUserController',

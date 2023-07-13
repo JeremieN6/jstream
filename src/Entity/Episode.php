@@ -255,7 +255,11 @@ class Episode
              $this->created_at = new \DateTime('now');
          }
 
-    }
 
+    }
+    public function __toString()
+    {
+        return $this->titre_episode;
+    }
 
 }

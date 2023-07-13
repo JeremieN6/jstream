@@ -7,7 +7,12 @@
         <div class="row">
             <div class="col-lg-4 mb-3">
                 <div class="sign-user_card text-center">
-                    <img src="images/user/user.jpg" class="rounded-circle img-fluid d-block mx-auto mb-3" alt="user">
+                    {% if user.featuredimage != null %}
+                    <img src="{{vich_uploader_asset(user, 'imageFile')}}" class="param-avatar" alt="user avatar">
+                    {% else %}
+                    <img src="{{asset('images/user/user.jpg')}}" class="rounded-circle img-fluid d-block mx-auto mb-3" alt="default user">
+                    {% endif %}
+                    {# <img src="images/user/user.jpg" class="rounded-circle img-fluid d-block mx-auto mb-3" alt="user"> #}
                     {% if not user.pseudo %}
                     <h4 class="mb-3">{{user.firstname}}</h4>
                     {% else %}
@@ -68,20 +73,23 @@
                             <a href="{{ path('modif_profil') }}" class="text-primary">Changer</a>
                         </div>
                     </div>
-                    {% if Plan %}
+                    {% if subscription is not null and subscription.isActive == false %}
                     <h5 class="mb-3 mt-4 pb-3 a-border">Détails de votre abonnement</h5>
                     <div class="row justify-content-between mb-3">
                         <div class="col-md-8 r-mb-15">
+                            {% if Plan %}
                                 <p class="text-body d-block mb-1">Vous êtes abonné au : {{ Plan.nom }}.</p>
                                 <p class="text-body d-block mb-1">Votre abonnement se termine le : {{ subscription.currentPeriodEnd.format('d/m/Y')}}</p>
-                            <a href="{{ path('contact') }}" class="btn btn-hover">Annuler l'abonnement</a>
+                            {% endif %}
+                                <a href="{{ path('contact') }}" class="btn btn-hover">Annuler l'abonnement</a>
                         </div>
                         <div class="col-md-4 text-md-right text-left">
                             <a href="{{ path('abonnement') }}" class="text-primary">Voir les plans d'abonnement</a>
                         </div>
                     </div>
-                    {% endif %}
-                    {% if not Plan %}
+                    {% elseif subscription is null %}
+                    {# {% endif %}
+                    {% if not Plan %} #}
                     <h5 class="mb-3 mt-4 pb-3 a-border">Détails des plans</h5>
                     <div class="row justify-content-between mb-3">
                         <div class="col-md-8">
@@ -95,9 +103,9 @@
                     <h5 class="mb-3 pb-3 mt-4 a-border">Paramètres</h5>
                     <div class="row">
                         <div class="col-12 setting">
-                            {% if Plan %}
+                            {# {% if Plan %} #}
                             {# <a href="{{facture}}" class="text-body d-block mb-1">Télécharger ma dernière facture</a> #}
-                            {% endif %}    
+                            {# {% endif %}     #}
                             {# <a href="#" class="text-body d-block mb-1">Récente activité</a> #}
                             <a href="{{ path('contact') }}" class="text-body d-block mb-1">Déconnecter tout les appareils </a>
                             <a href="{{ path('contact') }}" class="text-body d-block">Télécharger vos informations personnelles</a>

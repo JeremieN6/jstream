@@ -11,13 +11,17 @@
                     <div class="row">
                         <div class="col-lg-2">
                             <div class="upload_profile d-inline-block">
-                                {# {{ form_row(userForm.imageFile,
-                                    {'attr':{'class':'profile-pic rounded-circle img-fluid'}}) }} #}
-                            <img src="images/user/user.jpg" class="profile-pic rounded-circle img-fluid" alt="user">
+                                {# <div class="p-image"></div> #}
+                                {{ form_row(userForm.imageFile, {'attr':{'class':'ri-pencil-line'}}) }}
+                                    {% if user.featuredimage != null %}
+                                    <img src="{{vich_uploader_asset(user, 'imageFile')}}" class="rounded-circle img-fluid d-block mx-auto mb-3 rounded-circle-custom" alt="user avatar">
+                                    {% else %}
+                                    <img src="{{asset('images/user/user.jpg')}}" class="rounded-circle img-fluid d-block mx-auto mb-3" alt="default user">
+                                    {% endif %}
                             {# <div class="p-image">
                                 <i class="ri-pencil-line upload-button"></i>
                                 <input class="file-upload" type="file" accept="image/*">
-                            </div> #}
+                            </div>#} 
                             </div>
                         </div>
                         <div class="col-lg-10 device-margin">
