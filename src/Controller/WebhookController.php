@@ -116,7 +116,7 @@ class WebhookController extends AbstractController
 
 				$subscription = null;
 				for ($i = 0; $i <= 4 && $subscription === null; $i++) {
-					$subscription = $subscriptionRepository->findOneBy(['id' => $subscriptionId]);
+					$subscription = $subscriptionRepository->findOneBy(['stripeId' => $subscriptionId]);
 					if ($subscription) {
 						break;
 					}
