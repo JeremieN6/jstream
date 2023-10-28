@@ -5,9 +5,15 @@
 <!-- MainContent -->
    <!-- Banner Start -->
    <div class="video-container iq-main-slider">
-    <video class="video d-block" controls loop>
+      {% if currentEpisode.videoUrl != null %}
+      <video class="video d-block" controls>
+         <source src="{{currentEpisode.videoUrl}}" type="video/mp4">
+      </video>
+      {% else %}
+    <video class="video d-block" controls>
        <source src="{{ vich_uploader_asset(currentEpisode, 'videoFile') }}" type="video/mp4">
     </video>
+    {% endif %}
  </div>
  <!-- Banner End -->
 <div class="main-content">
