@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 
@@ -33,7 +34,8 @@ class EpisodeCrudController extends AbstractCrudController
             TextEditorField::new('description_episode', 'Description'),
             IntegerField::new('duree_episode', 'Durée de l\'Episode'),
             TextField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),
-            TextField::new('videoFile')->setFormType(VichImageType::class)->hideOnIndex(),
+            TextField::new('videoFile')->setFormType(VichImageType::class)->hideOnIndex(), /** ou alors la ligne d'en dessous pour ajouter une vidéo */
+            UrlField::new('video_url', 'Url de la vidéo')->hideOnIndex(),
             ImageField::new('featured_image')->setBasePath('upload/images/featured')->onlyOnIndex(),
         ];
     }
