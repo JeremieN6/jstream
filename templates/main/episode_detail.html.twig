@@ -5,16 +5,20 @@
 <!-- MainContent -->
    <!-- Banner Start -->
    <div class="video-container iq-main-slider">
-      {% if currentEpisode.videoUrl != null %}
-      <video class="video d-block" controls>
-         <source src="{{currentEpisode.videoUrl}}" type="video/mp4">
-      </video>
+      {% if currentEpisode.videoUrl is not null %}
+          <video class="video d-block" controls>
+              <source src="{{ currentEpisode.videoUrl }}" type="video/mp4">
+          </video>
       {% else %}
-    <video class="video d-block" controls>
-       <source src="{{ vich_uploader_asset(currentEpisode, 'videoFile') }}" type="video/mp4">
-    </video>
-    {% endif %}
- </div>
+          {% if vich_uploader_asset(currentEpisode, 'videoFile') is not null %}
+              <video class="video d-block" controls>
+                  <source src="{{ vich_uploader_asset(currentEpisode, 'videoFile') }}" type="video/mp4">
+              </video>
+          {% else %}
+              <p>La vidéo est non disponible pour le moment. Elle arrive très bientôt, restez branchés 😉</p>
+          {% endif %}
+      {% endif %}
+  </div>
  <!-- Banner End -->
 <div class="main-content">
     <section class="movie-detail container-fluid">
